@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 LOCAL_APPS = [
     'googlesearchdataviewer.apps.common',
+    'googlesearchdataviewer.apps.users',
 ]
 
 INSTALLED_APPS = [
@@ -118,3 +119,5 @@ STATIC_ROOT = PROJECT_ROOT / "staticfiles"
 STATICFILES_DIRS = [
     PROJECT_ROOT / "static",
 ]
+
+AUTH_USER_MODEL = 'users.BaseUser'
