@@ -5,10 +5,16 @@ from django.contrib.auth.admin import UserAdmin
 from .models import BaseUser
 from .forms import UserSignUpForm, UserEditForm
 
+from googlesearchdataviewer.apps.profiles.models import Profile
+
+class ProfileInline(admin.TabularInline):
+    model = Profile
 
 class CustomUserAdmin(UserAdmin):
     form = UserEditForm
     add_form = UserSignUpForm
+
+    inlines = (ProfileInline,)
 
     list_display = ('email', 'is_admin', 'is_active',
                     'is_staff', 'created_at', 'updated_at')

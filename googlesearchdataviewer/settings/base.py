@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 LOCAL_APPS = [
     'googlesearchdataviewer.apps.common',
     'googlesearchdataviewer.apps.users',
+    'googlesearchdataviewer.apps.profiles',
 ]
 
 INSTALLED_APPS = [
