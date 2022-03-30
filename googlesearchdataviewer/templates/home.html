@@ -6,4 +6,27 @@
 
 {% block content %}
   <h1 class="text-center">Home</h1>
+
+  {% if not user.is_authenticated %}
+  <div class="col d-flex justify-content-center">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">You are not logged in!</h5>
+        <p class="card-text">Please signup or login below</p>
+        <div class="row">
+          <div class="col">
+            <a href="{% url 'login' %}" class="btn btn-primary">Log in</a>
+          </div>
+          <div class="col">
+            <a href="{% url 'signup' %}" class="btn btn-secondary">Sign up</a>
+          </div>
+        </div>
+        
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
 {% endblock content %}

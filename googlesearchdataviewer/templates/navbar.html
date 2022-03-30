@@ -1,10 +1,13 @@
 <nav id="navbar">
-  <ul class="nav justify-content-end nav-tabs">
-    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+  <ul class="nav justify-content-start nav-tabs">
+    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
 
     {% if user.is_authenticated %}
       <li class="nav-item"><a class="nav-link" href="#">My keywords</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+    {% else %}
+      <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign up</a></li>
     {% endif %}
 
   </ul>

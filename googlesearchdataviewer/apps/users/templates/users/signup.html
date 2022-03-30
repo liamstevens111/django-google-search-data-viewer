@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}  
+
+{% block title %}
+  {{ block.super }} | Signup 
+{% endblock title %}
+
+{% block content %}
+  <h1 class="text-center">Sign up</h1>
+
+  <form method="post">
+    {% csrf_token %}
+      <div class="form-group col-md-4 mb-0 mx-auto mt-2">
+    {{ form.email|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0 mx-auto mt-2">
+    {{ form.password1|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0 mx-auto mt-2">
+    {{ form.password2|as_crispy_field }}
+      </div>
+      <div class="col-md-4 mb-0 mx-auto mt-2">
+    <button class="btn btn-primary" type="submit">Sign up</button>
+      </div>
+  </form>
+{% endblock content %}
