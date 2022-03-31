@@ -21,7 +21,6 @@ def search_keywords_on_google(keywords, upload):
     for keyword in keywords:
         data = google_service.search_keyword(keyword)
 
-
         keyword_result, created = KeywordResult.objects.update_or_create(defaults={'keyword': keyword, **data}, keyword__iexact=keyword)
 
         KeywordUploadProfile.objects.create(profile=upload.uploader, keyword_result=keyword_result, upload=upload)
