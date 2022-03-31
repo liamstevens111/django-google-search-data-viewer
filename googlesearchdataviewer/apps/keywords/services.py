@@ -5,7 +5,7 @@ from .models import KeywordUpload, KeywordUploadProfile, KeywordResult
 class MockGoogleKeywordSearchService():
     def search_keyword(self, keyword):
         return {
-            'total_results': 5001,
+            'total_results': 5137355411,
             'total_links': 5,
             'total_adwords': 3,
             'html': f'<html> {keyword} </html>'
