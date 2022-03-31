@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ block.super }} | Upload Keywords
+{% endblock title %}
+
+{% block content %}
+  <h1 class="text-center">Upload keywords</h1>
+
+  Select a CSV file with between 1 - 100 keywords
+ {%  include 'keywords/partials/upload_form.html' %}
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ block.super }} | My Keywords
+{% endblock title %}
+
+{% block content %}
+  <h1 class="text-center">My Keywords</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Keyword</th>
+        <th scope="col">Last Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+        <tr>
+          <td><a href="{% url 'keyword-detail' id=object.id %}">{{ object.keyword }}</a></td>
+          <td>{{ object.updated_at }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content %}

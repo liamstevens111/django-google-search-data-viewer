@@ -33,6 +33,7 @@ LOCAL_APPS = [
     'googlesearchdataviewer.apps.common',
     'googlesearchdataviewer.apps.users',
     'googlesearchdataviewer.apps.profiles',
+    'googlesearchdataviewer.apps.keywords',
 ]
 
 THIRD_PARTY_APPS = [
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     *THIRD_PARTY_APPS,
     *LOCAL_APPS,
 ]
@@ -127,5 +129,7 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'users.BaseUser'
+
+LOGIN_URL = '/auth/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

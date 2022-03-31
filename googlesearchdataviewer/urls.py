@@ -4,11 +4,14 @@ from django.conf import settings
 
 from django.views.generic import TemplateView
 
+from googlesearchdataviewer.apps.keywords.views import HomeView
+
 
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', HomeView.as_view(), name='home'),
     path('auth/', include('googlesearchdataviewer.apps.users.urls')),
+    path('keywords/', include('googlesearchdataviewer.apps.keywords.urls')),
     path('admin/', admin.site.urls),
 ]
 
