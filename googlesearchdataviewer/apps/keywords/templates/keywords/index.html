@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ block.super }} | Home
+{% endblock title %}
+
+{% block content %}
+  <h1 class="text-center">Home</h1>
+  <div class="text-center">
+  {%  include 'keywords/partials/search_form.html' %}
+  </div>
+  <div class="mt-5 mb-5">
+    <a href="{% url 'keyword-file-upload' %}" class="btn btn-success">Upload new keywords</a>
+  </div>
+ 
+
+ <h4 class="text-center">Latest keyword uploads</h4>
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Date/time</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      <tr>
+        <td>{{ object.created_at }}</td>
+        <td>{{ object.get_status_display }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}
