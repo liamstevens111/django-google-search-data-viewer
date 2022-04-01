@@ -2,6 +2,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 
 from .models import BaseUser
 
+from django import forms
+
 class UserSignUpForm(UserCreationForm):
     class Meta:
         model = BaseUser
@@ -18,5 +20,9 @@ class UserEditForm(UserChangeForm):
 
 
 class UserAuthenticationForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget = forms.widgets.EmailInput(attrs={'autofocus': 'True'})
+
     def clean_username(self):
         return self.cleaned_data['username'].lower()
