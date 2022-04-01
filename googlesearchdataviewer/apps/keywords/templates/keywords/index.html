@@ -6,9 +6,7 @@
 
 {% block content %}
   <h1 class="text-center">Home</h1>
-  <div class="text-center">
-  {%  include 'keywords/partials/search_form.html' %}
-  </div>
+
   <div class="mt-5 mb-5">
     <a href="{% url 'keyword-file-upload' %}" class="btn btn-success">Upload new keywords</a>
   </div>
