@@ -1,13 +1,10 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from googlesearchdataviewer.apps.keywords.utils import parse_keyword_csv_file
 
 from .models import KeywordResult, KeywordUpload, KeywordUploadProfile
 from .forms import UploadCsvKeywordsForm
-
-from django.forms import ValidationError
-
-from django.http import HttpResponseRedirect
 
 from django.contrib import messages
 
@@ -43,32 +40,16 @@ class KeywordDetailView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         return KeywordResult.objects.get(id=self.kwargs['id'])
 
+class KeywordFileUploadView(FormView):
+    template_name = 'keywords/upload-keywords.html'
+    form_class = UploadCsvKeywordsForm
+    success_url = '/'
+    
+    def form_valid(self, form):
+        keywords = parse_keyword_csv_file(self.request.FILES['file'])
 
-def parse_keywords_from_csv(file):
-    return file.read().decode('UTF-8').splitlines()
+        begin_keyword_search(profile=self.request.user.profile, keywords = keywords)
 
-
-def validate_keywords(keywords):
-    if len(keywords) == 0 or len(keywords) > 100:
-        raise ValidationError('Too many keywords', code='invalid')
-
-
-def keyword_file_upload(request):
-    if request.method == 'POST':
-        form = UploadCsvKeywordsForm(request.POST, request.FILES)
-        if form.is_valid():
-            keywords = parse_keywords_from_csv(request.FILES['file'])
-
-            validate_keywords(keywords)
-
-            # Create KeywordUpload to start process for user
-            begin_keyword_search(profile=request.user.profile, keywords = keywords)
-
-            # Return message to user it is in progress
-            messages.success(request, 'Keywords were sent, now in progress.')
-
-            return HttpResponseRedirect('/')
-    else:
-        form = UploadCsvKeywordsForm()
-    return render(request, 'keywords/upload-keywords.html', {'form': form})
+        messages.success(self.request, 'Keywords were sent, now in progress.')
+        return super().form_valid(form)
             

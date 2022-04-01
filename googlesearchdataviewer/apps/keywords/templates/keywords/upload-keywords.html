@@ -7,7 +7,9 @@
 {% block content %}
   <h1 class="text-center">Upload keywords</h1>
 
-  Select a CSV file with between 1 - 100 keywords
+  <div class='my-3'>
+    Select a CSV file with between 1 - 100 keywords. All keywords must be in the first column to be valid.
+  </div>
  {%  include 'keywords/partials/upload_form.html' %}
 
 {% endblock content %}
