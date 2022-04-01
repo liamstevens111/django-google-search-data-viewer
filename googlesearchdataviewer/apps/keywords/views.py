@@ -40,7 +40,7 @@ class KeywordDetailView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         return KeywordResult.objects.get(id=self.kwargs['id'])
 
-class KeywordFileUploadView(FormView):
+class KeywordFileUploadView(LoginRequiredMixin, FormView):
     template_name = 'keywords/upload-keywords.html'
     form_class = UploadCsvKeywordsForm
     success_url = '/'
