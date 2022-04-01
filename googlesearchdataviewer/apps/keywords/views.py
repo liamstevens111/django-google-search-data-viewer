@@ -28,11 +28,11 @@ class KeywordListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         keyword_qs = self.request.GET.get('keyword')
 
+        keywords = self.request.user.profile.uploaded_keywords.distinct()
+
         if keyword_qs:
-            keywords = KeywordResult.objects.filter(keyword__icontains=keyword_qs)
-        else:
-            keywords = self.request.user.profile.uploaded_keywords.distinct()
-        
+            keywords = keywords.filter(keyword__icontains=keyword_qs)
+
         return keywords
 
 
