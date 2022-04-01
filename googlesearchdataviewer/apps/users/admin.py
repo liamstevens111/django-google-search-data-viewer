@@ -23,9 +23,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Booleans', {'fields': ('is_active', 'is_admin')}),
-        ('Timestamps', {'fields': ('created_at', 'updated_at')
-                        }
-         )
+        ('Timestamps', {'fields': ('created_at', 'updated_at')})
     )
     add_fieldsets = (
         (None, {
